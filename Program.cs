@@ -1,53 +1,28 @@
-﻿//Recursividad indirecta obj. convertir un numero entero no negativo a su representacion binaria usando dos metodos que se llaman mutuamente.
-using System;
+﻿using System;
 class program
 {
-    // Método A para conversión binaria
-    static void BinarioA(int n)
+    // Función recursiva para calcular el factorial de un número n
+    static long factorial(int n)
     {
-        // si n es 0 o 1, se imprime directamente
-        if (n<2)
-        {
-            Console.Write(n);
-            return;
-        }
-        BinarioB(n / 2);
-        Console.Write(n % 2);
-    }
-    // Método B equivalente a BinarioA
-    static void BinarioB(int n)
-    {
-        if(n < 2)
-        {
-            Console.Write(n);
-            return;
+        // El factorial de 0 es 1
+        if (n == 0)
+            return 1;
 
-        }
-        BinarioA(n / 2);
-        // Imprime el residuo
-        Console.Write(n % 2);
-
+        // Llamada recursiva: n * factorial(n - 1)
+        return n * factorial(n - 1);
     }
     static void Main()
     {
-        // Lectura de un entero positivo o cero
-        Console.Write("Ingresa un numero entero: ");
+        // Solicita al usuario ingresar un número
+        Console.Write("Ingresa un numero: ");
         int n = int.Parse(Console.ReadLine());
-
-        // Validación de enteros no negativos
-        if (n < 0)
+        // Validación del rango permitido 
+        if (n<0 && n>20)
         {
-            Console.WriteLine("Ingresa un numero no negativo:");
+            Console.WriteLine("Ingresa un numero entre 0 y 20");
             return;
         }
-        Console.Write("Binario: ");
-
-        // Caso especial para 0
-        if (n == 0)
-            Console.Write("0");
-        else
-            BinarioA(n);
-
-        Console.WriteLine();
+        // Muestra el resultado calculando el factorial
+        Console.WriteLine("Factorial: " + factorial(n));
     }
 }
